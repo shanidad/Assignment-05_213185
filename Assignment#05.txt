@@ -1,0 +1,120 @@
+
+
+
+   Assignment no: 05
+
+Activity: 01
+
+HomeController1.cs:
+using Microsoft.AspNetCore.Mvc;
+
+namespace Ass_5.Controllers
+{
+    public class HomeController1 : Controller
+    {
+        public IActionResult Index()
+        {
+            return View();
+        }
+    }
+}
+
+Index1.cshtml: 
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Views demo</title>
+</head>
+<body>
+    @{
+        int i = 5;
+    }
+    Value: @i
+</body>
+</html>
+
+_ViewStart.cshtml:
+@{
+    Layout = "_Layout";
+}
+
+Program.cs: 
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+builder.Services.AddControllersWithViews();
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.UseMvc(routes => {
+    routes.MapRoute(
+    name: "default",
+    template: "{controller=Home}/{action=Index}/{id?}");
+});
+
+app.Run();
+
+Index1.cshtml:
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<html>
+<head>
+    <title>Views demo</title>
+</head>
+<body>
+    <ul>
+        @for (int i = 0; i < 5; i++)
+        {
+            <li>@(i + 1)</li>
+        }
+    </ul>
+</body>
+</html>
+
+Index1.cshtml:
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<html>
+<head>
+    <title>Views demo</title>
+</head>
+<body>
+    <ul>
+        @{
+            int i = 0; // Initialize i
+            while (i < 5)
+            {
+                <li>@(i + 1)</li>
+                i++; // Increment i
+            }
+        }
+    </ul>
+</body>
+</html>
